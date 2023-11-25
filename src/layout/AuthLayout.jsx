@@ -3,8 +3,9 @@ import {Outlet} from "react-router-dom";
 const AuthLayout = () => {
     return (
         <>
-            <h1>Desde auth layout</h1>
-            <Outlet></Outlet>
+            <h1>Administración de pacientes de veterinaria</h1>
+            <Outlet />
+
         </>
     );
 }

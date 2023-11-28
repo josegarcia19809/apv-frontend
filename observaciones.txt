@@ -1,0 +1,2 @@
+Video 521. Agregando State a Registrar.jsx
+Borramos de la BD veterinarios y pacientes

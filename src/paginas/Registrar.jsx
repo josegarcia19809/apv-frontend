@@ -6,6 +6,23 @@ const Registrar = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [repetirPassword, setRepetirPassword] = useState("");
+
+    const handleSubmit = e => {
+        e.preventDefault();
+        if ([nombre, email, password, repetirPassword].includes("")) {
+            console.log("Hay campos vacios");
+            return;
+        }
+        if (password !== repetirPassword) {
+            console.log("Los passwords no son iguales");
+            return;
+        }
+        if (password.length < 6) {
+            console.log("El password es muy corto, agrega mínimo 6 caracteres");
+            return;
+        }
+
+    }
     return (
         <>
             <div>
@@ -17,7 +34,7 @@ const Registrar = () => {
             </div>
             <div className='mt-20 md:mt-5 shadow-lg px-5 py-10 rounded-xl bg-white'>
                 <form
-
+                    onSubmit={handleSubmit}
                 >
                     <div className="my-5">
                         <label
@@ -30,7 +47,7 @@ const Registrar = () => {
                             placeholder="Tu Nombre"
                             className="border w-full p-3 mt-3 bg-gray-50 rounded-xl"
                             value={nombre}
-                            onChange={e=>setNombre(e.target.value)}
+                            onChange={e => setNombre(e.target.value)}
                         />
                     </div>
 
@@ -45,7 +62,7 @@ const Registrar = () => {
                             placeholder="Email de Registro"
                             className="border w-full p-3 mt-3 bg-gray-50 rounded-xl"
                             value={email}
-                            onChange={e=>setEmail(e.target.value)}
+                            onChange={e => setEmail(e.target.value)}
                         />
                     </div>
 
@@ -60,7 +77,7 @@ const Registrar = () => {
                             placeholder="Tu Password"
                             className="border w-full p-3 mt-3 bg-gray-50 rounded-xl"
                             value={password}
-                            onChange={e=>setPassword(e.target.value)}
+                            onChange={e => setPassword(e.target.value)}
                         />
                     </div>
 
@@ -75,7 +92,7 @@ const Registrar = () => {
                             placeholder="Repite tu Password"
                             className="border w-full p-3 mt-3 bg-gray-50 rounded-xl"
                             value={repetirPassword}
-                            onChange={e=>setRepetirPassword(e.target.value)}
+                            onChange={e => setRepetirPassword(e.target.value)}
                         />
                     </div>
 

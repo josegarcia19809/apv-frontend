@@ -13,7 +13,7 @@ const ConfirmarCuenta = () => {
     useEffect(() => {
         const confirmarCuenta = async () => {
             try {
-                const url = `http://127.0.0.1:4000/api/veterinarios/confirmar/${id}`;
+                const url = `${import.meta.env.VITE_BACKEND_URL}/api/veterinarios/confirmar/${id}`;
                 const {data} = await axios(url);
                 console.log(data);
                 setCuentaConfirmada(true);

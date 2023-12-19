@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import useAuth from "../hooks/useAuth.jsx";
 import Alerta from "../components/Alerta.jsx";
 import clienteAxios from "../config/axios.jsx";
@@ -8,6 +8,8 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [alerta, setAlerta] = useState({});
+
+    const navigate = useNavigate();
 
     const {msg} = alerta;
 
@@ -24,6 +26,7 @@ const Login = () => {
         try {
             const {data} = await clienteAxios.post('/veterinarios/login', {email, password});
             localStorage.setItem('token', data.token);
+            navigate("/admin")
         } catch (e) {
             setAlerta({
                 msg: e.response.data.msg,

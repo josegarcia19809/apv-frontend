@@ -1,6 +1,9 @@
 import {Link} from 'react-router-dom';
+import useAuth from "../hooks/useAuth.jsx";
 
 const Header = () => {
+    const {cerrarSesion} = useAuth();
+
     return (
         <header className="py-10 bg-indigo-600">
             <div className="container mx-auto flex flex-col lg:flex-row
@@ -17,6 +20,7 @@ const Header = () => {
                     <button
                         type="button"
                         className="text-white text-sm uppercase font-bold"
+                        onClick={cerrarSesion}
                     >
                         Cerrar sesión
                     </button>

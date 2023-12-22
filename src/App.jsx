@@ -9,6 +9,7 @@ import OlvidePassword from "./paginas/OlvidePassword.jsx";
 import NuevoPassword from "./paginas/NuevoPassword.jsx";
 
 import {AuthProvider} from "./context/AuthProvider.jsx";
+import {PacientesProvider} from "./context/PacientesProvider.jsx";
 
 import AdministrarPacientes from "./paginas/AdministrarPacientes.jsx";
 
@@ -18,19 +19,22 @@ function App() {
         <>
             <BrowserRouter>
                 <AuthProvider>
-                    <Routes>
-                        <Route path="/" element={<AuthLayout/>}>
-                            <Route index element={<Login/>}/>
-                            <Route path="registrar" element={<Registrar/>}/>
-                            <Route path="olvide-password" element={<OlvidePassword/>}/>
-                            <Route path="olvide-password/:token" element={<NuevoPassword/>}/>
-                            <Route path="confirmar/:id" element={<ConfirmarCuenta/>}/>
-                        </Route>
+                    <PacientesProvider>
+                        <Routes>
+                            <Route path="/" element={<AuthLayout/>}>
+                                <Route index element={<Login/>}/>
+                                <Route path="registrar" element={<Registrar/>}/>
+                                <Route path="olvide-password" element={<OlvidePassword/>}/>
+                                <Route path="olvide-password/:token"
+                                       element={<NuevoPassword/>}/>
+                                <Route path="confirmar/:id" element={<ConfirmarCuenta/>}/>
+                            </Route>
 
-                        <Route path="/admin" element={<RutaProtegida/>}>
-                            <Route index element={<AdministrarPacientes/>}/>
-                        </Route>
-                    </Routes>
+                            <Route path="/admin" element={<RutaProtegida/>}>
+                                <Route index element={<AdministrarPacientes/>}/>
+                            </Route>
+                        </Routes>
+                    </PacientesProvider>
                 </AuthProvider>
             </BrowserRouter>
         </>

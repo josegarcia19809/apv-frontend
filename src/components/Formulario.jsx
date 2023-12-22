@@ -19,7 +19,7 @@ const Formulario = () => {
             setNombre(paciente.nombre);
             setPropietario(paciente.propietario);
             setEmail(paciente.email);
-            setFecha(paciente.fecha);
+            setFecha(new Date(paciente.fecha).toLocaleDateString('en-CA'))
             setSintomas(paciente.sintomas);
             setId(paciente._id);
         }
@@ -35,8 +35,18 @@ const Formulario = () => {
             })
             return;
         }
-        setAlerta({});
+
         guardarPaciente({nombre, propietario, email, fecha, sintomas, id});
+        setAlerta({
+            msg: "Guardado correctamente"
+        });
+
+        setNombre('');
+        setPropietario('');
+        setEmail('');
+        setFecha('');
+        setSintomas('');
+        setId('');
     }
     const {msg} = alerta;
 

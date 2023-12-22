@@ -56,7 +56,8 @@ export const PacientesProvider = ({children}) => {
             value={{
                 pacientes,
                 guardarPaciente,
-                setEdicion
+                setEdicion,
+                paciente
             }}>
             {children}
         </PacientesContext.Provider>

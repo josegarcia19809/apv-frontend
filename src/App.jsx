@@ -12,6 +12,8 @@ import {AuthProvider} from "./context/AuthProvider.jsx";
 import {PacientesProvider} from "./context/PacientesProvider.jsx";
 
 import AdministrarPacientes from "./paginas/AdministrarPacientes.jsx";
+import EditarPerfil from "./paginas/EditarPerfil.jsx";
+import CambiarPassword from "./paginas/CambiarPassword.jsx";
 
 function App() {
 
@@ -32,6 +34,8 @@ function App() {
 
                             <Route path="/admin" element={<RutaProtegida/>}>
                                 <Route index element={<AdministrarPacientes/>}/>
+                                <Route path="perfil" element={<EditarPerfil/>}/>
+                                <Route path="cambiar-password" element={<CambiarPassword/>}/>
                             </Route>
                         </Routes>
                     </PacientesProvider>

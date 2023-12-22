@@ -11,8 +11,7 @@ const Formulario = () => {
     const [sintomas, setSintomas] = useState('');
 
     const [alerta, setAlerta] = useState({});
-    const {pacientes} = usePacientes();
-    console.log(pacientes);
+    const {guardarPaciente} = usePacientes();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -22,7 +21,10 @@ const Formulario = () => {
                 msg: "Todos los campos son obligatorios",
                 error: true
             })
+            return;
         }
+        setAlerta({});
+        guardarPaciente({nombre, propietario, email, fecha, sintomas});
     }
     const {msg} = alerta;
 

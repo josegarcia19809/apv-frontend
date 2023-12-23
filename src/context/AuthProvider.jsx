@@ -76,12 +76,18 @@ const AuthProvider = ({children}) => {
                 Authorization: `Bearer ${token}`
             }
         }
-        try{
-            const url='/veterinarios/actualizar-password';
-            const {data}= await clienteAxios.put(url, datos, config)
+        try {
+            const url = '/veterinarios/actualizar-password';
+            const {data} = await clienteAxios.put(url, datos, config)
             console.log(data);
-        }catch (e) {
-            console.log(e.response.data.msg);
+            return {
+                msg: data.msg
+            }
+        } catch (e) {
+            return {
+                msg: e.response.data.msg,
+                error: true
+            }
         }
     }
 

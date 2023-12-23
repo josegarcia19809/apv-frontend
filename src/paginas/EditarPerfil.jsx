@@ -1,7 +1,31 @@
-import React from 'react';
+import {useEffect, useState} from "react";
 import AdminNav from "../components/AdminNav.jsx";
+import useAuth from "../hooks/useAuth.jsx";
+import Alerta from "../components/Alerta.jsx";
 
 const EditarPerfil = () => {
+
+    const {auth, actualizarPerfil} = useAuth();
+    const [perfil, setPerfil] = useState({});
+    const [alerta, setAlerta] = useState({});
+
+    useEffect(() => {
+        setPerfil(auth);
+    }, [auth]);
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const {nombre, email} = perfil;
+        if ([nombre, email].includes('')) {
+            setAlerta({
+                msg: "Nombre y email son obligatorios",
+                error: true
+            });
+            return;
+        }
+        actualizarPerfil(perfil);
+    }
+    const {msg} = alerta;
     return (
         <>
             <AdminNav/>
@@ -14,9 +38,9 @@ const EditarPerfil = () => {
             <div className="flex justify-center">
                 <div className="w-full md:w-1/2 bg-white shadow rounded-lg p-5">
 
-                    {/*{msg && <Alerta alerta={alerta}/>}*/}
+                    {msg && <Alerta alerta={alerta}/>}
                     <form
-                        // onSubmit={handleSubmit}
+                        onSubmit={handleSubmit}
                     >
                         <div className="my-3">
                             <label className="uppercase font-bold text-gray-600">Nombre</label>
@@ -24,7 +48,11 @@ const EditarPerfil = () => {
                                 type="text"
                                 className="border bg-gray-50 w-full p-2 mt-5 rounded-lg"
                                 name="nombre"
-
+                                value={perfil.nombre || ''}
+                                onChange={e => setPerfil({
+                                    ...perfil,
+                                    [e.target.name]: e.target.value
+                                })}
                             />
                         </div>
 
@@ -35,7 +63,11 @@ const EditarPerfil = () => {
                                 type="text"
                                 className="border bg-gray-50 w-full p-2 mt-5 rounded-lg"
                                 name="web"
-
+                                value={perfil.web || ''}
+                                onChange={e => setPerfil({
+                                    ...perfil,
+                                    [e.target.name]: e.target.value
+                                })}
                             />
                         </div>
 
@@ -46,7 +78,11 @@ const EditarPerfil = () => {
                                 type="text"
                                 className="border bg-gray-50 w-full p-2 mt-5 rounded-lg"
                                 name="telefono"
-
+                                value={perfil.telefono || ''}
+                                onChange={e => setPerfil({
+                                    ...perfil,
+                                    [e.target.name]: e.target.value
+                                })}
                             />
                         </div>
 
@@ -56,7 +92,11 @@ const EditarPerfil = () => {
                                 type="text"
                                 className="border bg-gray-50 w-full p-2 mt-5 rounded-lg"
                                 name="email"
-
+                                value={perfil.email || ''}
+                                onChange={e => setPerfil({
+                                    ...perfil,
+                                    [e.target.name]: e.target.value
+                                })}
                             />
                         </div>
 

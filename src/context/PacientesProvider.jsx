@@ -1,10 +1,13 @@
 import {createContext, useState, useEffect} from "react";
 import clienteAxios from "../config/axios.jsx";
+import useAuth from "../hooks/useAuth.jsx";
 
 const PacientesContext = createContext();
 export const PacientesProvider = ({children}) => {
     const [pacientes, setPacientes] = useState([]);
     const [paciente, setPaciente] = useState({});
+
+    const {auth} = useAuth();
 
     useEffect(() => {
         const obtenerPacientes = async () => {

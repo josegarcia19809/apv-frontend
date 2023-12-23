@@ -4,6 +4,8 @@ import Alerta from "../components/Alerta";
 import useAuth from '../hooks/useAuth';
 
 const CambiarPassword = () => {
+    const { guardarPassword} = useAuth();
+
     const [alerta, setAlerta] = useState({});
     const [password, setPassword] = useState({
         pwd_actual: '',
@@ -11,25 +13,25 @@ const CambiarPassword = () => {
     })
     const handleSubmit = async e => {
         e.preventDefault();
-        // if(Object.values(password).some(campo => campo === '')) {
-        //     setAlerta({
-        //         msg: 'Todos los campos son obligatorios',
-        //         error: true
-        //     })
-        //     return
-        // }
-        //
-        // if( password.pwd_nuevo.length < 6 ) {
-        //     setAlerta({
-        //         msg: 'El Password debe tener mínimo 6 caracteres',
-        //         error: true
-        //     })
-        //     return
-        // }
-        //
-        // const respuesta = await guardarPassword(password)
-        //
-        // setAlerta(respuesta)
+        if(Object.values(password).some(campo => campo === '')) {
+            setAlerta({
+                msg: 'Todos los campos son obligatorios',
+                error: true
+            })
+            return;
+        }
+
+        if( password.pwd_nuevo.length < 6 ) {
+            setAlerta({
+                msg: 'El Password debe tener mínimo 6 caracteres',
+                error: true
+            })
+            return
+        }
+
+        const respuesta = await guardarPassword(password)
+
+        //setAlerta(respuesta)
     }
 
     const {msg } = alerta
